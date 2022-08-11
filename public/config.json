@@ -30,7 +30,7 @@
     }
   },
   "configurationArguments": {
-    "applicationExtensionKey": "ab6e8db0-56d2-4499-988c-9da92525d3b3",
+    "applicationExtensionKey": "3be0bd5c-c8d2-4e7c-8b22-56a4015e54e3",
     "save": {
       "url": "https://ca-poc-sfmc.herokuapp.com/journeybuilder/save",
       "verb": "POST",

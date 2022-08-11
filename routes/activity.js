@@ -61,28 +61,29 @@ exports.save = function (req, res) {
 
 exports.execute = function (req, res) {
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+        console.log("encoded: ",JSON.stringify(req.body))
         if (err) {
             console.error(err);
             return res.status(401).end();
         }
-
-        // console.log('buffer hex', req.body.toString('hex'));
 
         if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
             var decodedArgs = decoded.inArguments[0];
             console.log('inArguments', JSON.stringify(decoded.inArguments));
             console.log('decodedArgs', JSON.stringify(decodedArgs));
 
-            // const headers = {
-            //     'Content-Type': 'application/json',
-            //     'Authorization': 'authorization key'
-            // }
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'authorization key'
+            }
 
-            //     axios.post('ENDPOINT', 'BODY', { headers: headers }).then((res) => {
-            //         console.log(`Success `);
-            //     }).catch((err) => {
-            //         console.error(`ERROR ${err}`)
-            //     })
+            const endpoint = 'https://337fd80b6bcbda91f5fef78165e7dc30.m.pipedream.net'
+
+                axios.post(endpoint, decodedArgs, { headers: headers }).then((res) => {
+                    console.log(`Success`);
+                }).catch((err) => {
+                    console.error(`ERROR ${err}`)
+                })
         
             res.send(200, 'Execute');
         } else {
