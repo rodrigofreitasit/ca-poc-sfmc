@@ -127,7 +127,6 @@ define(function (require) {
         txtarea.focus();
         txtarea.selectionEnd = end + copyText.length;
       }
-
     // request fields from Data Extension
     function requestedSchema(data) {
         if (data.error) {
