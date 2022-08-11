@@ -1,7 +1,5 @@
 'use strict';
 
-define(function (require) {
-    var Postmonger = require('postmonger');
     var connection = new Postmonger.Session();
 
     // var payload = {};
@@ -312,4 +310,3 @@ define(function (require) {
           zip.value = dataPayload.zip;
         }
       }      
-});
