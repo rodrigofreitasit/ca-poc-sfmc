@@ -112,18 +112,18 @@
         var copyText = `<<${data.textContent}>>`;
         copyToClipboard(copyText);
         // Ao clicar na variavel, copia o texto para onde esta o cursor 
-        var txtarea = document.getElementById("message");
-        var start = txtarea.selectionStart;
-        var end = txtarea.selectionEnd;
-        var sel = txtarea.value.substring(start, end);
-        var finText =
-          txtarea.value.substring(0, start) +
-          copyText +
-          sel +
-          txtarea.value.substring(end);
-        txtarea.value = finText;
-        txtarea.focus();
-        txtarea.selectionEnd = end + copyText.length;
+        // var txtarea = document.getElementById("message");
+        // var start = txtarea.selectionStart;
+        // var end = txtarea.selectionEnd;
+        // var sel = txtarea.value.substring(start, end);
+        // var finText =
+        //   txtarea.value.substring(0, start) +
+        //   copyText +
+        //   sel +
+        //   txtarea.value.substring(end);
+        // txtarea.value = finText;
+        // txtarea.focus();
+        // txtarea.selectionEnd = end + copyText.length;
       }
     // request fields from Data Extension
     function requestedSchema(data) {
