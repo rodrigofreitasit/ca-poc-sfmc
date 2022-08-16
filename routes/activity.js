@@ -43,7 +43,7 @@ exports.save = function (req, res) {
 
 exports.execute = function (req, res) {
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
-        console.log("encoded: ", JSON.stringify(req.body))
+        // console.log("encoded: ", JSON.stringify(req.body))
         if (err) {
             console.error(err);
             return res.status(401).end();
@@ -51,11 +51,8 @@ exports.execute = function (req, res) {
 
         if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
             var decodedArgs = decoded.inArguments[0];
-            // console.log('inArguments', JSON.stringify(decoded.inArguments));
-            // console.log('decodedArgs', JSON.stringify(decodedArgs));
 
-
-            axios.post('https://api.zenvia.com/v2/channels/whatsapp/messages', {
+            let data = {
                 'from': 'tinted-bird',
                 'to': '5511984505745',
                 'contents': [{
@@ -67,18 +64,26 @@ exports.execute = function (req, res) {
                         'deliveryDate': '17/08/2022'
                     }
                 }]
-            }, {
+            };
+
+            const headers = {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-API-TOKEN': process.env.SECRET_API
                 }
-            }).then((res) => {
-                console.log(`Success: ${JSON.stringify(res)}`);
-            }).catch((err) => {
-                console.error(`ERROR ${JSON.stringify(err)}`)
-            })
-            // console.log('response api: ', JSON.stringify(response))
-            res.status(200).send('Execute')
+            }
+
+            const sendPostRequest = async () => {
+                try {
+                    const resp = await axios.post('https://api.zenvia.com/v2/channels/whatsapp/messages', data, headers);
+                    console.log(`Success: ${resp.data}`);
+                } catch (err) {
+                    // Handle Error Here
+                    console.error(`Error: ${err}`);
+                }
+            };
+            sendPostRequest()
+
         } else {
             console.error('inArguments invalid.');
             return res.status(400).end();
