@@ -63,7 +63,8 @@ exports.execute = function (req, res) {
                 'X-API-TOKEN': process.env.SECRET_API
             }
 
-            const endpoint = 'https://api.zenvia.com/v2/channels/whatsapp/message'
+            // const endpoint = 'https://api.zenvia.com/v2/channels/whatsapp/message'
+            const endpoint = 'https://337fd80b6bcbda91f5fef78165e7dc30.m.pipedream.net'
 
             axios.post(endpoint, {
                 'from': 'tinted-bird',
