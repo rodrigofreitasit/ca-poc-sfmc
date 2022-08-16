@@ -73,17 +73,19 @@ exports.execute = function (req, res) {
                 }
             }
 
-            const sendPostRequest = async (req, res) => {
+            const sendPostRequest = async () => {
                 try {
                     const resp = await axios.post('https://api.zenvia.com/v2/channels/whatsapp/messages', data, headers);
                     console.log(`Success: ${resp.data}`);
-                    res.status(200).send('Execute')
+                    if (resp.status == 200) {
+                        res.status(200).send('Execute')
+                    }
                 } catch (err) {
                     // Handle Error Here
                     console.error(`Error: ${err}`);
                 }
             };
-            sendPostRequest(req, res)
+            sendPostRequest()
 
         } else {
             console.error('inArguments invalid.');
