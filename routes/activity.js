@@ -56,36 +56,55 @@ exports.execute = function (req, res) {
 
 
             //////////start//////
-
+            const response = await axios.post(
+                'https://api.zenvia.com/v2/channels/whatsapp/messages', {
+                    'from': 'tinted-bird',
+                    'to': '5511984505745',
+                    'contents': [{
+                        'type': 'template',
+                        'templateId': '6ccf46dd-c506-46af-9181-ef69efdc70de',
+                        'fields': {
+                            'name': decodedArgs.firstName,
+                            'productName': decodedArgs.nameProduct,
+                            'deliveryDate': '17/08/2022'
+                        }
+                    }]
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-TOKEN': process.env.SECRET_API
+                    }
+                }
+            );
             ////////end///////////
-            const headers = {
-                'Content-Type': 'application/json',
-                'X-API-TOKEN': process.env.SECRET_API
-            }
+            // const headers = {
+            //     'Content-Type': 'application/json',
+            //     'X-API-TOKEN': process.env.SECRET_API
+            // }
 
-            const endpoint = 'https://api.zenvia.com/v2/channels/whatsapp/message'
+            // const endpoint = 'https://api.zenvia.com/v2/channels/whatsapp/message'
             // const endpoint = 'https://337fd80b6bcbda91f5fef78165e7dc30.m.pipedream.net'
 
-            axios.post(endpoint, {
-                'from': 'tinted-bird',
-                'to': '5511984505745',
-                'contents': [{
-                    'type': 'template',
-                    'templateId': '6ccf46dd-c506-46af-9181-ef69efdc70de',
-                    'fields': {
-                        'name': decodedArgs.firstName,
-                        'productName': decodedArgs.nameProduct,
-                        'deliveryDate': '17/08/2022'
-                    }
-                }]
-            }, {
-                headers: headers
-            }).then((res) => {
-                console.log(`Success ${res}`);
-            }).catch((err) => {
-                console.error(`ERROR ${err}`)
-            })
-
+            // axios.post(endpoint, {
+            //     'from': 'tinted-bird',
+            //     'to': '5511984505745',
+            //     'contents': [{
+            //         'type': 'template',
+            //         'templateId': '6ccf46dd-c506-46af-9181-ef69efdc70de',
+            //         'fields': {
+            //             'name': decodedArgs.firstName,
+            //             'productName': decodedArgs.nameProduct,
+            //             'deliveryDate': '17/08/2022'
+            //         }
+            //     }]
+            // }, {
+            //     headers: headers
+            // }).then((res) => {
+            //     console.log(`Success ${res}`);
+            // }).catch((err) => {
+            //     console.error(`ERROR ${err}`)
+            // })
+            console.log('response api: ', JSON.stringify(response))
             res.status(200).send('Execute')
         } else {
             console.error('inArguments invalid.');
