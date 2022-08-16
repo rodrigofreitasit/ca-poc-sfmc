@@ -43,7 +43,7 @@ exports.save = function (req, res) {
 
 exports.execute = function (req, res) {
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
-        console.log("encoded: ",JSON.stringify(req.body))
+        console.log("encoded: ", JSON.stringify(req.body))
         if (err) {
             console.error(err);
             return res.status(401).end();
@@ -54,19 +54,37 @@ exports.execute = function (req, res) {
             // console.log('inArguments', JSON.stringify(decoded.inArguments));
             // console.log('decodedArgs', JSON.stringify(decodedArgs));
 
+
+            //////////start//////
+
+            ////////end///////////
             const headers = {
                 'Content-Type': 'application/json',
-                'Authorization': 'authorization key'
+                'X-API-TOKEN': process.env.SECRET_API
             }
 
-            const endpoint = 'https://337fd80b6bcbda91f5fef78165e7dc30.m.pipedream.net'
+            const endpoint = 'https://api.zenvia.com/v2/channels/whatsapp/message'
 
-                axios.post(endpoint, decodedArgs, { headers: headers }).then((res) => {
-                    console.log(`Success`);
-                }).catch((err) => {
-                    console.error(`ERROR ${err}`)
-                })
-        
+            axios.post(endpoint, {
+                'from': 'tinted-bird',
+                'to': '5511984505745',
+                'contents': [{
+                    'type': 'template',
+                    'templateId': '6ccf46dd-c506-46af-9181-ef69efdc70de',
+                    'fields': {
+                        'name': decodedArgs.firstName,
+                        'productName': decodedArgs.nameProduct,
+                        'deliveryDate': '17/08/2022'
+                    }
+                }]
+            }, {
+                headers: headers
+            }).then((res) => {
+                console.log(`Success ${res}`);
+            }).catch((err) => {
+                console.error(`ERROR ${err}`)
+            })
+
             res.status(200).send('Execute')
         } else {
             console.error('inArguments invalid.');
