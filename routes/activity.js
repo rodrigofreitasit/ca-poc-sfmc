@@ -62,8 +62,8 @@ exports.execute = function (req, res) {
                     'type': 'template',
                     'templateId': '6ccf46dd-c506-46af-9181-ef69efdc70de',
                     'fields': {
-                        'name': 'decodedArgs.firstName',
-                        'productName': 'decodedArgs.nameProduct',
+                        'name': decodedArgs.firstName,
+                        'productName': decodedArgs.nameProduct,
                         'deliveryDate': '17/08/2022'
                     }
                 }]
