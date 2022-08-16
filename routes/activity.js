@@ -73,9 +73,9 @@ exports.execute = function (req, res) {
                     'X-API-TOKEN': process.env.SECRET_API
                 }
             }).then((res) => {
-                console.log(`Success ${res}`);
+                console.log(`Success: ${JSON.stringify(res)}`);
             }).catch((err) => {
-                console.error(`ERROR ${err}`)
+                console.error(`ERROR ${JSON.stringify(err)}`)
             })
             // console.log('response api: ', JSON.stringify(response))
             res.status(200).send('Execute')
