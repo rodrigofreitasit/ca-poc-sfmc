@@ -41,7 +41,7 @@ exports.save = function (req, res) {
     res.status(200).send('Save');
 };
 
-exports.execute = function (req, res) {
+exports.execute = async function (req, res) {
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
         console.log("encoded: ", JSON.stringify(req.body))
         if (err) {
