@@ -77,7 +77,7 @@ exports.execute = function (req, res) {
                 try {
                     const resp = await axios.post('https://api.zenvia.com/v2/channels/whatsapp/messages', data, headers);
                     console.log(`Success: ${resp.data}`);
-                    res.status(200).send('Execute...')
+                    res.status(200).send('Execute')
                 } catch (err) {
                     // Handle Error Here
                     console.error(`Error: ${err}`);
@@ -93,13 +93,13 @@ exports.execute = function (req, res) {
 };
 
 exports.publish = function (req, res) {
-    console.log('publish request');
+    console.log('publish request...');
     // logData(req);
-    res.status(200).send('Publish...')
+    res.status(200).send('Publish')
 };
 
 exports.validate = function (req, res) {
-    console.log('validate request');
+    console.log('validate request...');
     // logData(req);
-    res.status(200).send('Validate...')
+    res.status(200).send('Validate')
 };
