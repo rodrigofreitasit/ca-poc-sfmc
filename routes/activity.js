@@ -41,7 +41,7 @@ exports.save = function (req, res) {
     res.status(200).send('Save');
 };
 
-exports.execute = function (req, res) {
+exports.execute = async function (req, res) {
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
         // console.log("encoded: ", JSON.stringify(req.body))
         if (err) {
@@ -73,16 +73,17 @@ exports.execute = function (req, res) {
                 }
             }
 
-            const sendPostRequest = async () => {
-                try {
-                    const resp = await axios.post('https://api.zenvia.com/v2/channels/whatsapp/messages', data, headers);
-                    console.log(`Success: ${resp.data}`);
-                } catch (err) {
-                    // Handle Error Here
-                    console.error(`Error: ${err}`);
-                }
-            };
-            sendPostRequest()
+            // const sendPostRequest = async () => {
+            try {
+                const resp = await axios.post('https://api.zenvia.com/v2/channels/whatsapp/messages', data, headers);
+                console.log(`Success: ${resp.data}`);
+                resp.status(200).send('Execute')
+            } catch (err) {
+                // Handle Error Here
+                console.error(`Error: ${err}`);
+            }
+            // };
+            // sendPostRequest()
 
         } else {
             console.error('inArguments invalid.');
