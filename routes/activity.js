@@ -1,14 +1,20 @@
 'use strict';
 
-const Path = require('path');
-const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
-const util = require('util');
-const axios = require('axios');
+import {
+    join
+} from 'path';
+const JWT = require(join(__dirname, '..', 'lib', 'jwtDecoder.js'));
+import {
+    inspect
+} from 'util';
+import {
+    post
+} from 'axios';
 
-exports.logExecuteData = [];
+export let logExecuteData = [];
 
 function logData(req) {
-    exports.logExecuteData.push({
+    logExecuteData.push({
         body: req.body,
         headers: req.headers,
         trailers: req.trailers,
@@ -27,21 +33,39 @@ function logData(req) {
         secure: req.secure,
         originalUrl: req.originalUrl
     });
+
+    console.log("body: " + inspect(req.body));
+    console.log("headers: " + inspect(req.headers));
+    console.log("trailers: " + req.trailers);
+    console.log("method: " + req.method);
+    console.log("url: " + req.url);
+    console.log("params: " + inspect(req.params));
+    console.log("query: " + inspect(req.query));
+    console.log("route: " + req.route);
+    console.log("cookies: " + req.cookies);
+    console.log("ip: " + req.ip);
+    console.log("path: " + req.path);
+    console.log("host: " + req.host);
+    console.log("fresh: " + req.fresh);
+    console.log("stale: " + req.stale);
+    console.log("protocol: " + req.protocol);
+    console.log("secure: " + req.secure);
+    console.log("originalUrl: " + req.originalUrl);
 }
 
-exports.edit = function (req, res) {
+export function edit(req, res) {
     console.log('edit request');
     // logData(req);
     res.status(200).send('Edit');
-};
+}
 
-exports.save = function (req, res) {
+export function save(req, res) {
     console.log('save request');
     // logData(req);
     res.status(200).send('Save');
-};
+}
 
-exports.execute = function (req, res) {
+export function execute(req, res) {
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
         // console.log("encoded: ", JSON.stringify(req.body))
         if (err) {
@@ -76,7 +100,7 @@ exports.execute = function (req, res) {
             let sendPostRequest;
             (sendPostRequest = async () => {
                 try {
-                    const resp = await axios.post('https://api.zenvia.com/v2/channels/whatsapp/messages', data, headers);
+                    const resp = await post('https://api.zenvia.com/v2/channels/whatsapp/messages', data, headers);
                     console.log(`Success: ${resp.data}`);
                     if (resp.status == 200) {
                         res.status(200).send('Execute')
@@ -92,16 +116,16 @@ exports.execute = function (req, res) {
             return res.status(400).end();
         }
     });
-};
+}
 
-exports.publish = function (req, res) {
+export function publish(req, res) {
     console.log('publish request...');
     // logData(req);
     res.status(200).send('Publish')
-};
+}
 
-exports.validate = function (req, res) {
+export function validate(req, res) {
     console.log('validate request...');
     // logData(req);
     res.status(200).send('Validate')
-};
+}
