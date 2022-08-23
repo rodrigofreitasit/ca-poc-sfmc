@@ -6,13 +6,15 @@ var errorhandler = require('errorhandler');
 var http = require('http');
 var path = require('path');
 var request = require('request');
-var routes = require('./routes');
+var routes = require('./routes/index');
 var activity = require('./routes/activity');
 
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
-app.use(bodyParser.raw({ type: 'application/jwt' }));
+app.use(bodyParser.raw({
+  type: 'application/jwt'
+}));
 //app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
