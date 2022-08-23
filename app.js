@@ -23,9 +23,9 @@ if ('development' == app.get('env')) {
   app.use(errorhandler());
 }
 
-app.get('/', routes.index);
-app.post('/login', routes.login);
-app.post('/logout', routes.logout);
+// app.get('/', routes.index);
+// app.post('/login', routes.login);
+// app.post('/logout', routes.logout);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
