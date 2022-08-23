@@ -1,7 +1,8 @@
 var activity = require('./activity');
-
+var GetTokens = require('../public/js/customActivity')
 exports.index = function (req, res) {
     console.log('index request!');
+    console.log('GetTokens: ', GetTokens)
 
 
     // if (!req.session.token) {
