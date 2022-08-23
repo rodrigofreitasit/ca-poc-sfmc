@@ -1,16 +1,9 @@
-'use strict';
-
-var express = require('express');
-var path = require('path');
-// var activity = require('./activity');
-
-var app = express();
+var activity = require('./activity');
 
 exports.index = function (req, res) {
     console.log('index request!');
-    console.log('path: ', path.join(__dirname, '../public'))
 
-    // app.use(express.static(path.join(__dirname, '../public')));
+
     // if (!req.session.token) {
     //     res.render('index', {
     //         title: 'Unauthenticated',
