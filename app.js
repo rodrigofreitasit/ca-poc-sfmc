@@ -27,7 +27,8 @@ app.get('/', routes.index);
 // app.post('/login', routes.login);
 // app.post('/logout', routes.logout);
 
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
+console.log('path 1: ', path.join(__dirname, 'public'))
 
 app.post('/journeybuilder/save/', activity.save);
 app.post('/journeybuilder/validate/', activity.validate);
