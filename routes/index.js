@@ -1,9 +1,11 @@
 'use strict';
 
 var activity = require('./activity');
-var tokensActivity = require('../public/js/customActivity')
+var tokenMkt = require('../public/js/customActivity')
 
-console.log('tokenActivity: ', tokensActivity)
+
+console.log('tokenMkt: ', tokenMkt)
+console.log('tokenMkt.authTokens: ', tokenMkt.authTokens)
 exports.index = function (req, res) {
     console.log('index request!');
 
