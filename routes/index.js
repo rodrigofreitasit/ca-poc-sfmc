@@ -3,7 +3,7 @@
 var activity = require('./activity');
 var tokensActivity = require('../public/js/customActivity')
 
-console.log('tokensActivity: ', tokensActivity)
+console.log('tokenActivity: ', tokensActivity)
 exports.index = function (req, res) {
     console.log('index request!');
 
