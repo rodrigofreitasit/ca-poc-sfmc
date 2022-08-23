@@ -6,17 +6,17 @@ exports.index = function (req, res) {
     console.log('req: ', req)
     console.log('index request!');
 
-    if (!req.session.token) {
-        res.render('index', {
-            title: 'Unauthenticated',
-            errorMessage: 'This app may only be loaded via Salesforce Marketing Cloud',
-        });
-    } else {
-        res.render('index', {
-            title: 'Journey Builder Activity',
-            results: activity.logExecuteData,
-        });
-    }
+    // if (!req.session.token) {
+    //     res.render('index', {
+    //         title: 'Unauthenticated',
+    //         errorMessage: 'This app may only be loaded via Salesforce Marketing Cloud',
+    //     });
+    // } else {
+    //     res.render('index', {
+    //         title: 'Journey Builder Activity',
+    //         results: activity.logExecuteData,
+    //     });
+    // }
 };
 
 exports.login = function (req, res) {
