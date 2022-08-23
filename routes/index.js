@@ -2,7 +2,7 @@
 
 var activity = require('./activity');
 
-export function index(req, res) {
+exports.index = function (req, res) {
     console.log('req: ', req)
     console.log('index request!');
 
@@ -17,13 +17,13 @@ export function index(req, res) {
             results: activity.logExecuteData,
         });
     }
-}
+};
 
-export function login(req, res) {
+exports.login = function (req, res) {
     console.log('req.body: ', req.body);
     res.redirect('/');
-}
+};
 
-export function logout(req, res) {
+exports.logout = function (req, res) {
     req.session.token = '';
-}
+};

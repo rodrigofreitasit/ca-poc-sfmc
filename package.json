@@ -15,6 +15,7 @@
     "heroku"
   ],
   "author": "unknow",
+  "type": "commonjs",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
