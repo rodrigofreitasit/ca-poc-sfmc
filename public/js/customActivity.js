@@ -211,7 +211,7 @@ function showStep(step, stepIndex) {
   }
 }
 
-export var tokenMkt = function onGetTokens(data) {
+function onGetTokens(data) {
   console.log('tokens: ' + JSON.stringify(data));
   authTokens = data;
 }
