@@ -17,7 +17,7 @@ app.use(bodyParser.raw({
 }));
 //app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 if ('development' == app.get('env')) {
   app.use(errorhandler());
@@ -26,6 +26,8 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.post('/login', routes.login);
 app.post('/logout', routes.logout);
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/journeybuilder/save/', activity.save);
 app.post('/journeybuilder/validate/', activity.validate);
