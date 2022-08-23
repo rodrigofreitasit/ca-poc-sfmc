@@ -1,7 +1,9 @@
 'use strict';
 
 var activity = require('./activity');
+var tokensActivity = require('../public/js/customActivity')
 
+console.log('tokensActivity: ', tokensActivity)
 exports.index = function (req, res) {
     console.log('index request!');
 
