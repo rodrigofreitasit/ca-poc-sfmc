@@ -35,6 +35,7 @@ function onRender() {
   connection.trigger("ready");
   connection.trigger("nextStep");
   connection.trigger("prevStep");
+  connection.trigger('requestTokens');
 
   // Disable the next button if a value isn't selected
   $("#nameCampaign").change(function () {
@@ -162,6 +163,7 @@ function onClickedNext() {
   }
 }
 
+
 function onClickedBack() {
   connection.trigger("prevStep");
 }
@@ -209,9 +211,9 @@ function showStep(step, stepIndex) {
   }
 }
 
-function onGetTokens(tokens) {
-  console.log('tokens: ' + tokens);
-  authTokens = tokens;
+function onGetTokens(data) {
+  console.log('tokens: ' + JSON.stringify(data));
+  authTokens = data;
 }
 
 // function onGetEndpoints(endpoints) {
