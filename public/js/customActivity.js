@@ -1,5 +1,3 @@
-'use strict';
-
 var connection = new Postmonger.Session();
 
 var authTokens = {};
@@ -211,7 +209,7 @@ function showStep(step, stepIndex) {
   }
 }
 
-function onGetTokens(data) {
+module.exports = function onGetTokens(data) {
   console.log('tokens: ' + JSON.stringify(data));
   authTokens = data;
 }

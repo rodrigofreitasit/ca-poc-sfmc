@@ -23,7 +23,7 @@ if ('development' == app.get('env')) {
   app.use(errorhandler());
 }
 
-// app.get('/', routes.index);
+app.get('/', routes.index);
 // app.post('/login', routes.login);
 // app.post('/logout', routes.logout);
 

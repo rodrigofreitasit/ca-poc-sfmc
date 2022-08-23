@@ -1,7 +1,7 @@
-'use strict';
-
 var activity = require('./activity');
+var onGetTokens = require('../public/js/customActivity.js')
 
+console.log('onGetTokens: ', onGetTokens)
 exports.index = function (req, res) {
     console.log('index request!');
 
