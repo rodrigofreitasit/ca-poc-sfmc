@@ -1,8 +1,6 @@
 'use strict';
 
-import {
-    logExecuteData
-} from './activity';
+var activity = require('./activity');
 
 export function index(req, res) {
     console.log('req: ', req)
@@ -16,7 +14,7 @@ export function index(req, res) {
     } else {
         res.render('index', {
             title: 'Journey Builder Activity',
-            results: logExecuteData,
+            results: activity.logExecuteData,
         });
     }
 }
