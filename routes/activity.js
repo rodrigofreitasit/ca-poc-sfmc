@@ -6,21 +6,10 @@ const axios = require('axios');
 
 const router = express.Router();
 
-
-// exports.edit = function (req, res) {
-//     console.log('edit request');
-//     // logData(req);
-//     res.status(200).send('Edit');
-// };
-
 router.post('/journeybuilder/save/', (req, res) => {
     console.log('save request');
-    // logData(req);
     res.status(200).send('Save');
 })
-
-
-// exports.save = function (req, res) {};
 
 router.post('/journeybuilder/execute/', (req, res) => {
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
@@ -58,13 +47,13 @@ router.post('/journeybuilder/execute/', (req, res) => {
             (sendPostRequest = async () => {
                 try {
                     const resp = await axios.post('https://api.zenvia.com/v2/channels/whatsapp/messages', data, headers);
-                    console.log(`Success: ${resp.data}`);
+                    console.log(`Success: ${JSON.stringify(resp.data)}`);
                     if (resp.status == 200) {
                         res.status(200).send('Execute')
                     }
                 } catch (err) {
                     // Handle Error Here
-                    console.error(`Error: ${err}`);
+                    console.error(`Error: ${JSON.stringify(err)}`);
                 }
             })();
 
@@ -74,22 +63,20 @@ router.post('/journeybuilder/execute/', (req, res) => {
         }
     });
 })
-// exports.execute = function (req, res) {};
-
-// exports.publish = function (req, res) {};
 
 router.post('/journeybuilder/publish/', (req, res) => {
     console.log('publish request...');
-    // logData(req);
     res.status(200).send('Publish')
 })
 
-// exports.validate = function (req, res) {};
-
 router.post('/journeybuilder/validate/', (req, res) => {
     console.log('validate request...');
-    // logData(req);
     res.status(200).send('Validate')
+})
+
+router.post('/journeybuilder/stop/', (req, res) => {
+    console.log('stop request...');
+    res.status(200).send('Stop')
 })
 
 module.exports = router;
