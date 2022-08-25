@@ -27,6 +27,7 @@ connection.on("requestedSchema", requestedSchema);
 connection.on("clickedNext", onClickedNext);
 connection.on("clickedBack", onClickedBack);
 connection.on("gotoStep", onGotoStep);
+connection.on('requestedEndpoints', onGetEndpoints);
 
 
 /* ![ Form Validate ] ================================================================== */
@@ -212,13 +213,13 @@ function showStep(step, stepIndex) {
 }
 
 function onGetTokens(data) {
-  console.log('tokens: ' + JSON.stringify(data));
+  // console.log('tokens: ' + JSON.stringify(data));
   authTokens = data;
 }
 
-// function onGetEndpoints(endpoints) {
-//     // console.log(endpoints);
-// }
+function onGetEndpoints(endpoints) {
+  console.log(endpoints);
+}
 
 function save() {
   var bodyMessage = getMessage();
