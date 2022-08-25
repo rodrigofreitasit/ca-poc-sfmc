@@ -47,7 +47,7 @@ router.post('/journeybuilder/execute/', (req, res) => {
             (sendPostRequest = async () => {
                 try {
                     const resp = await axios.post('https://api.zenvia.com/v2/channels/whatsapp/messages', data, headers);
-                    console.log(`Success: ${JSON.stringify(resp.data)}`);
+                    console.log(`Success: ${JSON.stringify(resp)}`);
                     if (resp.status == 200) {
                         res.status(200).send('Execute')
                     }
