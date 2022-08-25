@@ -1,65 +1,28 @@
 'use strict';
-
+const express = require('express');
 const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
-const util = require('util');
 const axios = require('axios');
 
-exports.logExecuteData = [];
+const router = express.Router();
 
-function logData(req) {
-    exports.logExecuteData.push({
-        body: req.body,
-        headers: req.headers,
-        trailers: req.trailers,
-        method: req.method,
-        url: req.url,
-        params: req.params,
-        query: req.query,
-        route: req.route,
-        cookies: req.cookies,
-        ip: req.ip,
-        path: req.path,
-        host: req.host,
-        fresh: req.fresh,
-        stale: req.stale,
-        protocol: req.protocol,
-        secure: req.secure,
-        originalUrl: req.originalUrl
-    });
 
-    console.log("body: " + util.inspect(req.body));
-    console.log("headers: " + util.inspect(req.headers));
-    console.log("trailers: " + req.trailers);
-    console.log("method: " + req.method);
-    console.log("url: " + req.url);
-    console.log("params: " + util.inspect(req.params));
-    console.log("query: " + util.inspect(req.query));
-    console.log("route: " + req.route);
-    console.log("cookies: " + req.cookies);
-    console.log("ip: " + req.ip);
-    console.log("path: " + req.path);
-    console.log("host: " + req.host);
-    console.log("fresh: " + req.fresh);
-    console.log("stale: " + req.stale);
-    console.log("protocol: " + req.protocol);
-    console.log("secure: " + req.secure);
-    console.log("originalUrl: " + req.originalUrl);
-}
+// exports.edit = function (req, res) {
+//     console.log('edit request');
+//     // logData(req);
+//     res.status(200).send('Edit');
+// };
 
-exports.edit = function (req, res) {
-    console.log('edit request');
-    // logData(req);
-    res.status(200).send('Edit');
-};
-
-exports.save = function (req, res) {
+router.post('/journeybuilder/save/', (req, res) => {
     console.log('save request');
     // logData(req);
     res.status(200).send('Save');
-};
+})
 
-exports.execute = function (req, res) {
+
+// exports.save = function (req, res) {};
+
+router.post('/journeybuilder/execute/', (req, res) => {
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
         // console.log("encoded: ", JSON.stringify(req.body))
         if (err) {
@@ -110,16 +73,23 @@ exports.execute = function (req, res) {
             return res.status(400).end();
         }
     });
-};
+})
+// exports.execute = function (req, res) {};
 
-exports.publish = function (req, res) {
+// exports.publish = function (req, res) {};
+
+router.post('/journeybuilder/publish/', (req, res) => {
     console.log('publish request...');
     // logData(req);
     res.status(200).send('Publish')
-};
+})
 
-exports.validate = function (req, res) {
+// exports.validate = function (req, res) {};
+
+router.post('/journeybuilder/validate/', (req, res) => {
     console.log('validate request...');
     // logData(req);
     res.status(200).send('Validate')
-};
+})
+
+module.exports = router;
